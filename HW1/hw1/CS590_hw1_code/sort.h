@@ -11,6 +11,9 @@ void insertion_sort(int**, int, int, int);
 void insertion_sort_im(int**, int, int, int);
 void merge_sort(int**, int, int, int);
 
+void mergeSort(int**, int, int, int*, int);
+void mergeArrays(int**, int, int, int, int*, int);
+
 bool check_sorted(int**, int, int, int);
 
 int** create_ivector(int, int);

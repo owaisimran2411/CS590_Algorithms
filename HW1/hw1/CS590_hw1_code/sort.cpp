@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include<iostream>
+#include<limits.h>
 
 #include "sort.h"
 using namespace std;
@@ -80,6 +81,88 @@ void merge_sort(int** A, int n, int p, int r)
   for (int count=0; count<r+1; count++) {
     preComputedLengths[count] = ivector_length(A[count], n);
   }
+
+  mergeSort(A, p, r, preComputedLengths, n);
+}
+
+/*
+* FUNCTION TO START MERGE SORT EXECUTION
+*/
+void mergeSort(int **A, int left, int right, int *preComputerLength, int dimension) {
+  if (left<right) {
+    int mid = left + (right-left) / 2;
+    mergeSort(A,left,mid,preComputerLength,dimension);
+    mergeSort(A,mid+1,right,preComputerLength,dimension);
+
+    mergeArrays(A,left,mid,right,preComputerLength,dimension);
+  }
+}
+
+
+/*
+* FUNCTION TO MERGE TWO ARRAYS
+*/
+void mergeArrays(int **A, int p, int q, int r, int *preComputedLengths, int dimension) {
+
+  int leftLength = q-p+1;
+  int rightLength = r-q;
+
+  // creating two subarray to merge the preComputerLengths array
+  int *leftLengthArray = new int[leftLength++];
+  int *rightLengthArray = new int[rightLength++];
+
+  // creating two subarrays to merge the main 2d array
+  int **leftMainArray = new int*[leftLength];
+  int **rightMainArray = new int*[rightLength];
+  
+  for(int count=0; count<leftLength; count++) {
+    leftMainArray[count] = new int[dimension];
+    leftMainArray[count] =  A[p+count];
+    leftLengthArray[count] = preComputedLengths[count+p];
+  }
+  for(int count=0; count<rightLength; count++) {
+    rightMainArray[count] = new int[dimension];
+    rightMainArray[count] = A[q+count+1];
+    rightLengthArray[count] = preComputedLengths[q+count+1];
+  }
+
+  // placing sentinels on the ending index of leftLength and rightLength
+  leftLengthArray[leftLength++]=9999999;
+  rightLengthArray[rightLength++]=9999999;
+
+  int i,j,k;
+  i=0;
+  j=0;
+  k=p;
+
+  while(i<leftLength && j<rightLength) {
+    if (leftLengthArray[i] <= rightLengthArray[j]) {
+      preComputedLengths[k] = leftLengthArray[i];
+      A[k] = leftMainArray[i];
+      i++;
+    }
+    else {
+      preComputedLengths[k] = rightLengthArray[j];
+      A[k] = rightMainArray[j];
+      j++;
+    }
+    k++;
+  }
+
+  while(i<leftLength) {
+    preComputedLengths[k] = leftLengthArray[i];
+    A[k] = leftMainArray[i];
+    i++;
+    k++;
+  }
+
+  while(j<rightLength) {
+    preComputedLengths[k] = rightLengthArray[j];
+    A[k] = rightMainArray[j];
+    j++;
+    k++;
+  }
+
 }
 
 /*
