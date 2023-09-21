@@ -1,8 +1,9 @@
 #include <cstdio>
 #include <cstdlib>
+#include<iostream>
 
 #include "sort.h"
-
+using namespace std;
 
 int ivector_length(int* v, int n)
 {
@@ -42,7 +43,32 @@ void insertion_sort(int** A, int n, int l, int r)
 *   TO IMPLEMENT: Improved Insertion Sort for problem 1.
 */
 void insertion_sort_im(int** A, int n, int l, int r)
-{ 
+{
+
+  // Calculating the length of each sub array in A
+  int *preComputedLengths = new int[r+1];
+  for (int count=0; count<r+1; count++) {
+    preComputedLengths[count] = ivector_length(A[count], n);
+  }
+
+  // running the insertion sort algorithm
+  int i;
+  int *keyArray=new int[r+1];
+  int keyPreComputedLength;
+
+  for(int j=l+1; j<=r; j++) {
+    keyArray=A[j];
+    keyPreComputedLength=preComputedLengths[j];
+    i=j-1;
+    while((i>=0) && keyPreComputedLength<preComputedLengths[i]) {
+      preComputedLengths[i+1]=preComputedLengths[i];
+      A[i+1]=A[i];
+      i--;
+    }
+    A[i+1]=keyArray;
+    preComputedLengths[i+1]=keyPreComputedLength;
+  }
+
 
 }
 
