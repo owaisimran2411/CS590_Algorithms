@@ -3,3 +3,4 @@
 __MACOSX
 *.bat
 .vscode/
+*.stackdump

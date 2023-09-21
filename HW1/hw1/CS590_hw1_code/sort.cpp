@@ -68,8 +68,6 @@ void insertion_sort_im(int** A, int n, int l, int r)
     A[i+1]=keyArray;
     preComputedLengths[i+1]=keyPreComputedLength;
   }
-
-
 }
 
 /*
@@ -77,7 +75,11 @@ void insertion_sort_im(int** A, int n, int l, int r)
 */
 void merge_sort(int** A, int n, int p, int r)
 {
-
+  // Calculating the length of each sub array in A
+  int *preComputedLengths = new int[r+1];
+  for (int count=0; count<r+1; count++) {
+    preComputedLengths[count] = ivector_length(A[count], n);
+  }
 }
 
 /*
