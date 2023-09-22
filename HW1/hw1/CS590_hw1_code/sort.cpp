@@ -108,8 +108,8 @@ void mergeArrays(int **A, int p, int q, int r, int *preComputedLengths, int dime
   int rightLength = r-q;
 
   // creating two subarray to merge the preComputerLengths array
-  int *leftLengthArray = new int[leftLength++];
-  int *rightLengthArray = new int[rightLength++];
+  int *leftLengthArray = new int[leftLength+1];
+  int *rightLengthArray = new int[rightLength+1];
 
   // creating two subarrays to merge the main 2d array
   int **leftMainArray = new int*[leftLength];
@@ -127,8 +127,8 @@ void mergeArrays(int **A, int p, int q, int r, int *preComputedLengths, int dime
   }
 
   // placing sentinels on the ending index of leftLength and rightLength
-  leftLengthArray[leftLength++]=9999999;
-  rightLengthArray[rightLength++]=9999999;
+  leftLengthArray[leftLength]=INT_MAX;
+  rightLengthArray[rightLength]=INT_MAX;
 
   int i,j,k;
   i=0;
