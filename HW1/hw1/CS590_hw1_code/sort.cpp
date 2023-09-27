@@ -6,6 +6,13 @@
 #include "sort.h"
 using namespace std;
 
+/*
+  * Student Name: Muhammad Owais Imran
+  * CWID: 20025554
+  * Course: CS590-B
+  * HW # 01
+*/
+
 int ivector_length(int* v, int n)
 {
   int sum;

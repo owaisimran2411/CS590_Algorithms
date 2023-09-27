@@ -75,14 +75,14 @@ int main(int argc, char* argv[])
 /*
  * output the first 20 elements for debugging purposes
  */
-//   for (int i = 0; (i < m) && (i < 20); i++)
-//   {
-//    cout << "[ ";
-//    for (int j = 0; j < n; j++)
-//     cout << input_array[i][j] << " ";
-//   cout << "]" << endl;
-//  }
-//  cout << endl;
+  for (int i = 0; (i < m) && (i < 20); i++)
+  {
+   cout << "[ ";
+   for (int j = 0; j < n; j++)
+    cout << input_array[i][j] << " ";
+  cout << "]" << endl;
+ }
+ cout << endl;
 
 /*
  * Do a merge sort or an insertion sort
@@ -103,6 +103,7 @@ switch (a) {
   default: {
     if (a < 0)
     {
+    cout << "Running insertion sort (improved) algorithm: " << endl;
      t.start();
      insertion_sort_im(input_array, n, 0, m-1);
      t.stop();
@@ -123,14 +124,14 @@ else
 /*
  * output the first 20 elements for debugging purposes
  */
-//  for (int i = 0; (i < m) && (i < 20); i++)
-//  {
-//    cout << "[ ";
-//    for (int j = 0; j < n; j++)
-//     cout << input_array[i][j] << " ";
-//   cout << "]" << endl;
-//  }
-//  cout << endl;
+ for (int i = 0; (i < m) && (i < 20); i++)
+ {
+   cout << "[ ";
+   for (int j = 0; j < n; j++)
+    cout << input_array[i][j] << " ";
+  cout << "]" << endl;
+ }
+ cout << endl;
 
 /*
  * free the allocated storage
