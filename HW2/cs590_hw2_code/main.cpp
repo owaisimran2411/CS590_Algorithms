@@ -58,11 +58,11 @@ int main(int argc, char* argv[])
 		input_array[i] = rg.random_string(m, input_length[i]);
 	t.stop();
 
-	cout << "Timer (generate): " << t << endl;
+	// cout << "Timer (generate): " << t << endl;
 
-	// for (int i = 0; (i < n) && (i < 20); i++)
-	// 	cout << input_array[i] << endl;
-	// cout << endl;
+	for (int i = 0; (i < n); i++)
+		cout << input_array[i] << endl;
+	cout << endl;
 
 	/*
 	 * run algorithms
@@ -92,9 +92,9 @@ int main(int argc, char* argv[])
 	else
 		cout << "ERROR: The output is not sorted!" << endl;
 
-	  // for (int i = 0; (i < n) && (i < 20); i++)
-	  //   cout << input_array[i] << endl;
-	  // cout << endl;
+	  for (int i = 0; (i < n); i++)
+	    cout << input_array[i] << endl;
+	  cout << endl;
 
 	/*
 	 * free allocated storage

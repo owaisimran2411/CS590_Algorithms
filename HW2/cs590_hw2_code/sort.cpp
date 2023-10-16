@@ -3,6 +3,12 @@
 #include <limits.h>
 #include <iostream>
 
+/*
+  * Student Name: Muhammad Owais Imran
+  * CWID: 20025554
+  * Course: CS590-B
+  * HW # 02
+*/
 
 #include "sort.h"
 using namespace std;
