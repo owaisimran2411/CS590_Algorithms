@@ -28,8 +28,11 @@ class bs_tree
     bs_tree();
     ~bs_tree();
 
+    void insert(bs_tree_node*, bs_tree_i_info&);
     void insert(int, bs_tree_i_info&);
+    void inorder_tree_walk(bs_tree_node*, int*, int*);
     int convert(int*, int);
+    void remove_all(bs_tree_node*);
 
    
 };

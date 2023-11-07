@@ -45,6 +45,7 @@ class rb_tree
     int check_black_height()
       { return check_black_height(T_root); }
 
+    void inorder_traversal(rb_tree_node*, int*, int*);
     void inorder_output()
       { inorder_output(T_root, 1); }
     void output()

@@ -70,8 +70,10 @@ void rb_tree::insert(rb_tree_node* z, rb_tree_i_info& t_info)
 
       if (z->key < x->key)
         x = x->left;
-      else
+      else if (z->key > x->key)
         x = x->right;
+      else
+        t_info.i_duplicate += 1;
     }
 
   z->p = y;
@@ -114,6 +116,7 @@ void rb_tree::insert_fixup(rb_tree_node*& z, rb_tree_i_info& t_info)
 	    {
 	      z->p->color = RB_BLACK;		// Case 1
 	      y->color = RB_BLACK;
+        t_info.i_case_1++;
 	      z->p->p->color = RB_RED;
 	      z = z->p->p;
 	    }
@@ -122,12 +125,16 @@ void rb_tree::insert_fixup(rb_tree_node*& z, rb_tree_i_info& t_info)
 	      if (z == z->p->right)
 		{
 		  z = z->p;			// Case 2
+      t_info.i_case_2++;
 		  left_rotate(z);
+      t_info.i_left_rotate++;
 		}
 
 	      z->p->color = RB_BLACK;		// Case 3
 	      z->p->p->color = RB_RED;
+        t_info.i_case_3++;
 	      right_rotate(z->p->p);
+        t_info.i_right_rotate++;
 	    }
 	}
       else
@@ -138,6 +145,7 @@ void rb_tree::insert_fixup(rb_tree_node*& z, rb_tree_i_info& t_info)
 	  if (y->color == RB_RED)
 	    {
 	      z->p->color = RB_BLACK;		// Case 1
+        t_info.i_case_1++;
 	      y->color = RB_BLACK;
 	      z->p->p->color = RB_RED;
 	      z = z->p->p;
@@ -147,12 +155,16 @@ void rb_tree::insert_fixup(rb_tree_node*& z, rb_tree_i_info& t_info)
 	      if (z == z->p->left)
 		{
 		  z = z->p;			// Case 2
+      t_info.i_case_2++;
 		  right_rotate(z);
+      t_info.i_right_rotate++;
 		}
 
 	      z->p->color = RB_BLACK;		// Case 3
 	      z->p->p->color = RB_RED;
+        t_info.i_case_3++;
 	      left_rotate(z->p->p);
+        t_info.i_left_rotate++;
 	    }
 	}
     }
@@ -194,7 +206,7 @@ void rb_tree::right_rotate(rb_tree_node* x)
  * rotate right -> see book/slides
  */
   rb_tree_node* y;
-
+  
   y = x->left;			// set y
   x->left = y->right;		// turn y's right subtree into x's left subtree
   if (y->right != T_nil)
@@ -286,10 +298,22 @@ void rb_tree::remove_all(rb_tree_node* x)
     }
 } /*>>>*/
 
+void rb_tree::inorder_traversal(rb_tree_node* node, int* array, int *index) {
+  if(node!= T_nil)
+   {
+      inorder_traversal(node->left,array,index);
+      array[(*index)] = node->key;
+      *index = *index + 1;
+      inorder_traversal(node->right,array,index);
+   }
+}
 // question 2
 int rb_tree::convert(int* array, int n)
 {
-  return n;
+  int i = 0;
+  rb_tree_node* node = T_root;
+  inorder_traversal(node, array, &i);
+  return i;
 }
 
 //question 4
