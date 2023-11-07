@@ -42,6 +42,7 @@ class rb_tree
 
     void insert(int, rb_tree_i_info&);
     int convert(int*, int);
+    int getTreeHeight(rb_tree_node*, int*);
     int check_black_height()
       { return check_black_height(T_root); }
 

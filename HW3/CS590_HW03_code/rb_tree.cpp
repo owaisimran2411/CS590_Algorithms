@@ -317,8 +317,43 @@ int rb_tree::convert(int* array, int n)
 }
 
 //question 4
+int rb_tree::getTreeHeight(rb_tree_node* T_node, int *countBlackNodes) {
+  if(T_node == T_nil)
+    return 0;
+  
+  int left = getTreeHeight(T_node->left, countBlackNodes);
+  if(T_node->color == RB_BLACK)
+  {
+    countBlackNodes++;
+  }
+  int right = getTreeHeight(T_node->right, countBlackNodes);
+
+  if(left > right)
+  {
+    return left + 1;
+  }
+  else
+  {
+    return right + 1;
+  }
+}
 int rb_tree::check_black_height(rb_tree_node* x)
 {
-  return 0;
+  int heightOfTree = 0;
+  rb_tree_node* T_node = T_root;
+  int blackNodes = 0;
+  heightOfTree = getTreeHeight(T_node, &blackNodes);
+  cout<<"Height of the tree: "<<heightOfTree<<endl;
+  cout<<"No of BlackNodes: "<<blackNodes<<endl;
+  if(blackNodes >= (heightOfTree/2))
+  {
+    return 1;
+  }
+  else
+  {
+    return 0;
+  }
+
+  // return 0;
 }
 
