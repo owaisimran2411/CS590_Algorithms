@@ -82,6 +82,7 @@ int bs_tree::convert(int* array, int n)
   int i=0;
   bs_tree_node* T_node = T_root;
   inorder_tree_walk(T_node, array, &i);
+  cout << i << endl;
   return i;
 }
 
