@@ -48,8 +48,8 @@ int main(int argc, char* argv[])
 
 	//values used for question #4.
 	// n=m=10;
-	Y = "abababda";
-	X = "acbababa";
+	X = "cacacccbab";
+	Y = "bccadaadcc";
 
 	random_generator::seed();
 
