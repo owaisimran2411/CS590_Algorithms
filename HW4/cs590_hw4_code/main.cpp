@@ -48,15 +48,13 @@ int main(int argc, char* argv[])
 
 	//values used for question #4.
 	// n=m=10;
-	X = "dcdcbacbbb";
-	Y = "acdccabdbb";
-	n=10;
-	m=10;
+	// X = "dcdcbacbbb";
+	// Y = "acdccabdbb";
 
 	random_generator::seed();
 
-	// X = rg.random_string_m(n, 4);
-	// Y = rg.random_string_m(m, 4);
+	X = rg.random_string_m(n, 4);
+	Y = rg.random_string_m(m, 4);
 
 	H = new int*[n+1];
 	P = new char*[n+1];
@@ -86,10 +84,10 @@ int main(int argc, char* argv[])
 	cout << "\nY = ";
 	for(int j=0;j<m;j++)
 		cout << Y[j];
-	cout << endl;
-	cout << "n=" << n+1 << endl;
-	cout << "m=" << m+1 << endl;
-	cout << "\n-----------------\n H matrix";
+	// cout << endl;
+	// cout << "n=" << n+1 << endl;
+	// cout << "m=" << m+1 << endl;
+	cout << "\n-----------------\n M matrix";
 	for(int i=0; i<=n; i++) {
 		cout << endl;
 		for(int j=0; j<=m; j++) {
