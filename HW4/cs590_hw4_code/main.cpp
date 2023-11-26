@@ -88,23 +88,23 @@ int main(int argc, char* argv[])
 	// cout << "n=" << n+1 << endl;
 	// cout << "m=" << m+1 << endl;
 	cout << "\n-----------------\n M matrix";
-	for(int i=0; i<=n; i++) {
-		cout << endl;
-		for(int j=0; j<=m; j++) {
-			cout << H[i][j] << " ";
-		}
+	// for(int i=0; i<=n; i++) {
+	// 	cout << endl;
+	// 	for(int j=0; j<=m; j++) {
+	// 		cout << H[i][j] << " ";
+	// 	}
 		
-	}
+	// }
 	cout <<"\nM(n,m) = " << H[n][m] << endl;
 
 	cout << "\n-----------------\n Pmatrix";
-	for(int i=0; i<=n; i++) {
-		cout << endl;
-		for(int j=0; j<=m; j++) {
-			cout << P[i][j] << " ";
-		}
+	// for(int i=0; i<=n; i++) {
+	// 	cout << endl;
+	// 	for(int j=0; j<=m; j++) {
+	// 		cout << P[i][j] << " ";
+	// 	}
 		
-	}
+	// }
 
 	return 0;
 }
