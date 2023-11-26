@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
 	// cout << endl;
 	// cout << "n=" << n+1 << endl;
 	// cout << "m=" << m+1 << endl;
-	cout << "\n-----------------\n M matrix";
+	// cout << "\n-----------------\n M matrix";
 	// for(int i=0; i<=n; i++) {
 	// 	cout << endl;
 	// 	for(int j=0; j<=m; j++) {
@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
 	// }
 	cout <<"\nM(n,m) = " << H[n][m] << endl;
 
-	cout << "\n-----------------\n Pmatrix";
+	// cout << "\n-----------------\n Pmatrix";
 	// for(int i=0; i<=n; i++) {
 	// 	cout << endl;
 	// 	for(int j=0; j<=m; j++) {
