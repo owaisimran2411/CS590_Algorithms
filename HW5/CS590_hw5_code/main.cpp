@@ -67,8 +67,16 @@ int main(int argc, char* argv[])
 	cout << "Graph:" << endl;
 	gr->output();
 
-	v_d = new int[gr->get_no_of_vertices()];
-  	v_pi = new int[gr->get_no_of_vertices()];
+	int alpha = gr->get_no_of_vertices();
+	v_d = new int[alpha];
+  	v_pi = new int[alpha];
+
+	d = new int*[alpha];
+	pi = new int*[alpha];
+	for(int i=0; i<alpha; i++) {
+		d[i] = new int[alpha];
+		pi[i] = new int[alpha];
+	}
 	if(gr->bellman_ford(0, v_d, v_pi))
 		cout << "There was a negative weight cycle!";
 	else
@@ -83,13 +91,13 @@ int main(int argc, char* argv[])
 			cout << v_pi[i] << "\t";
 		cout << "]" << endl;
 
-		// gr->floyd_warshall(d, pi);
-		// cout << endl << "Floyd-Warshall:" << endl;
-		// cout << "D: " << endl;
-		// gr->output(d);
-		// cout << endl;
-		// cout << "Pi: " << endl;
-		// gr->output(pi);
+		gr->floyd_warshall(d, pi);
+		cout << endl << "Floyd-Warshall:" << endl;
+		cout << "D: " << endl;
+		gr->output(d);
+		cout << endl;
+		cout << "Pi: " << endl;
+		gr->output(pi);
 
 		// /*
  		// * delete Floyd-Warshall leftovers

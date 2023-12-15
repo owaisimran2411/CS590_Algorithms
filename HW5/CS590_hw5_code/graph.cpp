@@ -174,4 +174,24 @@ bool graph::bellman_ford(int s, int*& v_d, int*& v_pi)
 void graph::floyd_warshall(int**& d, int**& pi)
 {
 
+  int mc_edge[5][5] = {{0, 3, 8, INT_MAX, -4},{INT_MAX, 0, INT_MAX, 1, 7},{INT_MAX, 4, 0, INT_MAX, INT_MAX},{2, INT_MAX, -5, 0, INT_MAX},{INT_MAX, INT_MAX, INT_MAX, 6, 0}};
+  for(int i=0; i<no_vert; i++) {
+    for(int j=0; j<no_vert; j++) {
+      d[i][j] = mc_edge[i][j];
+    }
+  }
+
+
+  for(int k=0; k<no_vert; k++) {
+    for(int i=0; i<no_vert; i++) {
+      for(int j=0; j<no_vert; j++) {
+        if( j!= i && (d[i][k] != INT_MAX && d[k][j] != INT_MAX )) {
+          if ((d[i][k] + d[k][j]) < d[i][j] ) {
+            d[i][j] = d[i][k] + d[k][j];
+            pi[i][j] = k;
+          }
+        }
+      }
+    }
+  }
 }
