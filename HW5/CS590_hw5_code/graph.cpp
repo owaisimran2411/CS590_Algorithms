@@ -40,7 +40,10 @@ void graph::initialize()
  */
   for (int i = 0; i < no_vert; i++)
     for (int j = 0; j < no_vert; j++)
+    {
       m_edge[i][j] = INT_MAX;
+      m_edge[i][i] = 0;
+    }
 
 } /*>>>*/
 
@@ -97,13 +100,74 @@ void graph::output(int** m_out, int** m_out_2)
 // TODO: Implement problem 1
 void graph::generate_random(int n_edges, int max_weight)
 {
+  random_generator rg;
+  double weight;
+  int arr[no_vert];
 
+  if (n_edges >= no_vert*(no_vert-1)) {
+    n_edges = no_vert*(no_vert-1);
+  }
+
+  while (n_edges>0) {
+    int edgeCount = (n_edges>no_vert-1)?no_vert-1:n_edges;
+    permutation(arr, no_vert);
+
+    for(int i=0; i<edgeCount; i++) {
+      if (m_edge[arr[i]][arr[i+1]] == INT_MAX) {
+        rg>>weight;
+        weight = (weight*0.5)*2*max_weight;
+        m_edge[arr[i]][arr[i+1]] = weight;
+        n_edges--;
+      }
+    }
+  }
+}
+
+void graph::initSingleSource(int *&v_d, int source, int *& v_pi) {
+  for(int i=0; i<no_vert; i++) {
+    v_d[i] = INT_MAX;
+    v_pi[i] = INT_MAX;
+  }
+
+  v_d[source] = 0;
+}
+
+bool graph::relax(int u, int v, int *&v_d, int *&v_pi) {
+  if(v_d[v] > m_edge[u][v] + v_d[u]) {
+    v_pi[v] = u;
+    return true;
+  }
+  return false;
 }
 
 // TODO: Implement problem 3
 bool graph::bellman_ford(int s, int*& v_d, int*& v_pi)
 {
-  return true;
+  initSingleSource(v_d, s, v_pi);
+  bool isNegativeCycleFound=false;
+  for(int k=1; k<no_vert; k++) {
+    for(int i=0; i<no_vert; i++) {
+      for(int j=0; j<no_vert; j++) {
+        if(m_edge[i][j] != 0 && m_edge[i][j] != INT_MAX) {
+          if(relax(i, j, v_d, v_pi))
+          {
+            v_d[j] = v_d[i] + m_edge[i][j] ;
+          }
+        }
+      }
+    }
+  }
+  for(int i=0; i<no_vert; i++) {
+    for(int j=0; j<no_vert; j++) {
+      if(m_edge[i][j] != 0 && m_edge[i][j] != INT_MAX) {
+        if (v_d[i] + m_edge[i][j] < v_d[j]) {
+          isNegativeCycleFound=true;
+          break;
+        }
+      }
+    }
+  }
+  return isNegativeCycleFound;
 }
 
 // TODO: Implement problem 4

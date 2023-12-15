@@ -24,6 +24,9 @@ public:
 
   void output(int** = 0, int** = 0);
 
+  void initSingleSource(int *&, int, int *&);
+  bool relax(int, int, int *&, int *&);
+
 protected:
   void initialize();
   void permutation(int*, int);

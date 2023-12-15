@@ -48,6 +48,7 @@ int main(int argc, char* argv[])
 	int* v_pi;
 	int u, v;
 
+
 	graph* gr;
 
 	if (n < 1)
@@ -66,7 +67,9 @@ int main(int argc, char* argv[])
 	cout << "Graph:" << endl;
 	gr->output();
 
-	if(!gr->bellman_ford(0, v_d, v_pi))
+	v_d = new int[gr->get_no_of_vertices()];
+  	v_pi = new int[gr->get_no_of_vertices()];
+	if(gr->bellman_ford(0, v_d, v_pi))
 		cout << "There was a negative weight cycle!";
 	else
 	{
@@ -80,39 +83,39 @@ int main(int argc, char* argv[])
 			cout << v_pi[i] << "\t";
 		cout << "]" << endl;
 
-		gr->floyd_warshall(d, pi);
-		cout << endl << "Floyd-Warshall:" << endl;
-		cout << "D: " << endl;
-		gr->output(d);
-		cout << endl;
-		cout << "Pi: " << endl;
-		gr->output(pi);
+		// gr->floyd_warshall(d, pi);
+		// cout << endl << "Floyd-Warshall:" << endl;
+		// cout << "D: " << endl;
+		// gr->output(d);
+		// cout << endl;
+		// cout << "Pi: " << endl;
+		// gr->output(pi);
 
-		/*
- 		* delete Floyd-Warshall leftovers
- 		*/
-		for (int i = 0; i < gr->get_no_of_vertices(); i++)
-		{
-			delete[] d[i];
-			delete[] pi[i];
-		}
+		// /*
+ 		// * delete Floyd-Warshall leftovers
+ 		// */
+		// for (int i = 0; i < gr->get_no_of_vertices(); i++)
+		// {
+		// 	delete[] d[i];
+		// 	delete[] pi[i];
+		// }
 
-		delete[] d;
-		delete[] pi;
+		// delete[] d;
+		// delete[] pi;
 	}
 
 /*
  * delete Bellman-Ford leftovers
  */
-	delete[] v_d;
-	delete[] v_pi;
+	// delete[] v_d;
+	// delete[] v_pi;
 
 
 
 /*
  * delete graph
  */
-	delete gr;
+	// delete gr;
 
 	return 0;
 }
