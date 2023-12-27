@@ -1,5 +1,5 @@
 *.exe
-*.pdf
+/HW*/*.pdf
 __MACOSX
 *.bat
 .vscode/
